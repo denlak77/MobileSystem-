@@ -15,17 +15,17 @@ data class Question<T>(
 
 class Quiz : ProgressPrintable {
     override val progressText: String
-        get() = "${answered} of ${total} answered"
+        get() = "$answered of $total answered"
 
     override fun printProgressBar() {
-        repeat(Quiz.answered) { print("▓") }
-        repeat(Quiz.total - Quiz.answered) { print("▒") }
+        repeat(answered) { print("▓") }
+        repeat(total - answered) { print("▒") }
         println()
         println(progressText)
     }
-    val question1 = Question<String>("Quoth the raven ___", "nevermore", Difficulty.MEDIUM)
-    val question2 = Question<Boolean>("The sky is green. True or false", false, Difficulty.EASY)
-    val question3 = Question<Int>("How many days are there between full moons?", 28, Difficulty.HARD)
+    val question1 = Question("Quoth the raven ___", "nevermore", Difficulty.MEDIUM)
+    val question2 = Question("The sky is green. True or false", false, Difficulty.EASY)
+    val question3 = Question("How many days are there between full moons?", 28, Difficulty.HARD)
     fun printQuiz() {
         question1.let {
             println(it.questionText)
@@ -53,15 +53,15 @@ class Quiz : ProgressPrintable {
     }
 }
 
-val Quiz.StudentProgress.progressText: String
-    get() = "${answered} of ${total} answered"
-
-fun Quiz.StudentProgress.printProgressBar() {
-    repeat(Quiz.answered) { print("▓") }
-    repeat(Quiz.total - Quiz.answered) { print("▒") }
-    println()
-    println(Quiz.progressText)
-}
+//val Quiz.StudentProgress.progressText: String
+//    get() = "${answered} of ${total} answered"
+//
+//fun Quiz.StudentProgress.printProgressBar() {
+//    repeat(Quiz.answered) { print("▓") }
+//    repeat(Quiz.total - Quiz.answered) { print("▒") }
+//    println()
+//    println(Quiz.progressText)
+//}
 
 fun main() {
     val quiz = Quiz()
@@ -69,7 +69,8 @@ fun main() {
 
     Quiz().apply {
         printQuiz()
+        printProgressBar()
     }
 
-    Quiz.printProgressBar();
+
 }
