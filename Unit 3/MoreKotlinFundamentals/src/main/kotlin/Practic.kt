@@ -13,10 +13,24 @@ data class Event(
     val durationInMinutes: Int
 )
 
-// Создание экземпляра Event с тестовыми данными
-val studyEvent = Event(
-    title = "Study Kotlin",
-    description = "Commit to studying Kotlin at least 15 minutes per day.",
-    daypart = Daypart.EVENING,  // Используем enum значение
-    durationInMinutes = 15
-)
+fun main() {
+    // Создание списка событий вместо отдельных переменных
+    val events = mutableListOf<Event>()
+
+    // Добавление всех событий в список
+    events.add(Event(title = "Wake up", description = "Time to get up", daypart = Daypart.MORNING, durationInMinutes = 0))
+    events.add(Event(title = "Eat breakfast", description = null, daypart = Daypart.MORNING, durationInMinutes = 15))
+    events.add(Event(title = "Learn about Kotlin", description = null, daypart = Daypart.AFTERNOON, durationInMinutes = 30))
+    events.add(Event(title = "Practice Compose", description = null, daypart = Daypart.AFTERNOON, durationInMinutes = 60))
+    events.add(Event(title = "Watch latest DevBytes video", description = null, daypart = Daypart.AFTERNOON, durationInMinutes = 10))
+    events.add(Event(title = "Check out latest Android Jetpack library", description = null, daypart = Daypart.EVENING, durationInMinutes = 45))
+
+    // Легко получить количество событий
+    println("Количество запланированных событий: ${events.size}")
+
+    // Можно также вывести все события
+    println("\nВсе события:")
+    events.forEach { event ->
+        println(event)
+    }
+}
