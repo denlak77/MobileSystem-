@@ -64,8 +64,8 @@ class Quiz : ProgressPrintable {
 //}
 
 fun main() {
-    val quiz = Quiz()
-    quiz.printQuiz()
+    //val quiz = Quiz()
+    //quiz.printQuiz()
 
     Quiz().apply {
         printQuiz()
