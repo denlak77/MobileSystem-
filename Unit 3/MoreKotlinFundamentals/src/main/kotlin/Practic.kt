@@ -25,12 +25,26 @@ fun main() {
     events.add(Event(title = "Watch latest DevBytes video", description = null, daypart = Daypart.AFTERNOON, durationInMinutes = 10))
     events.add(Event(title = "Check out latest Android Jetpack library", description = null, daypart = Daypart.EVENING, durationInMinutes = 45))
 
-    // Шаг 1: Группировка событий по daypart
-    val eventsByDaypart = events.groupBy { event ->
-        event.daypart
-    }
-    // Шаг 2: Вывод сводки по времени дня
-    eventsByDaypart.forEach { (daypart, eventList) ->
-        println("${daypart.name.lowercase().replaceFirstChar { it.uppercase() }}: ${eventList.size} events")
-    }
+    // Текущий способ коллеги - использование индекса
+    println("Способ коллеги (через индекс):")
+    println("Last event of the day: ${events[events.size - 1].title}")
+
+    // Улучшенный способ - использование функции last()
+    println("\nУлучшенный способ (через last()):")
+    println("Last event of the day: ${events.last().title}")
+
+    println("Результат через индекс: ${events[events.size - 1].title}")
+    println("Результат через last(): ${events.last().title}")
+
+
+    // Дополнительно
+
+    // last() с условием
+    val lastShortEvent = events.last { it.durationInMinutes < 60 }
+    println("Последнее короткое событие: ${lastShortEvent.title}")
+
+    // lastOrNull() для безопасного доступа
+    val emptyList = emptyList<Event>()
+    val lastEventOrNull = emptyList.lastOrNull()
+    println("Последнее событие в пустом списке: ${lastEventOrNull?.title ?: "Список пуст"}")
 }
