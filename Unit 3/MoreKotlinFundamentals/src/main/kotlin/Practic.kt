@@ -1,8 +1,15 @@
+// Enum class для ограничения возможных значений времени дня
+enum class Daypart {
+    MORNING,
+    AFTERNOON,
+    EVENING
+}
+
 // Data class для хранения информации о событии
 data class Event(
     val title: String,
     val description: String?,
-    val daypart: String,
+    val daypart: Daypart,  // Теперь используем enum вместо String
     val durationInMinutes: Int
 )
 
@@ -10,10 +17,6 @@ data class Event(
 val studyEvent = Event(
     title = "Study Kotlin",
     description = "Commit to studying Kotlin at least 15 minutes per day.",
-    daypart = "Evening",
+    daypart = Daypart.EVENING,  // Используем enum значение
     durationInMinutes = 15
 )
-
-fun main() {
-    println(studyEvent)
-}
