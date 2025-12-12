@@ -25,20 +25,12 @@ fun main() {
     events.add(Event(title = "Watch latest DevBytes video", description = null, daypart = Daypart.AFTERNOON, durationInMinutes = 10))
     events.add(Event(title = "Check out latest Android Jetpack library", description = null, daypart = Daypart.EVENING, durationInMinutes = 45))
 
-    // Шаг 1: Фильтрация коротких событий (менее 60 минут)
-    val shortEvents = events.filter { event ->
-        event.durationInMinutes < 60
+    // Шаг 1: Группировка событий по daypart
+    val eventsByDaypart = events.groupBy { event ->
+        event.daypart
     }
-
-    // Шаг 2: Подсчет количества коротких событий
-    val shortEventsCount = shortEvents.size
-
-    // Шаг 3: Вывод сводки для пользователя
-    println("You have $shortEventsCount short events.")
-
-    // Дополнительно: показать какие именно события считаются короткими
-    println("\nКороткие события:")
-    shortEvents.forEach { event ->
-        println("- ${event.title} (${event.durationInMinutes} минут)")
+    // Шаг 2: Вывод сводки по времени дня
+    eventsByDaypart.forEach { (daypart, eventList) ->
+        println("${daypart.name.lowercase().replaceFirstChar { it.uppercase() }}: ${eventList.size} events")
     }
 }
